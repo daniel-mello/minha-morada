@@ -1,0 +1,52 @@
+.button {
+  display: block;
+  width: 350px;
+  margin-top: 16px;
+  padding: 4px 16px;
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: 800;
+  border: none;
+  border-radius: 8px;
+  text-align: center;
+  background: #004DB0;
+  cursor: pointer;
+  box-shadow: 3px 3px 5px rgba(94,104,121,0.288);
+}
+
+.button--red {
+  background-color: #FA2E27;
+}
+
+.button--yellow {
+  background-color: #F9BA48;
+}
+
+.button--small {
+  font-size: 24px;
+}
+
+.button--fit-content {
+  width: fit-content;
+}
+
+.button--full-width {
+  width: 100%;
+}
+
+.button--card {
+  margin-top: 0;
+  font-size: 24px;
+}
+
+.button--has-m-bottom {
+  margin-bottom: 8px;
+}
+
+.button--card.available {
+  background-color: #3CB371;
+}
+
+.button--card.occupied {
+  background-color: #FA2E27;
+}

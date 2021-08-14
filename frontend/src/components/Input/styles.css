@@ -1,0 +1,52 @@
+.input {
+  position: relative;
+  margin-bottom: 32px;
+}
+
+.input--small {
+  width: 78%;
+}
+
+.input--edit {
+  width: 100%;
+  font-size: 24px;
+  margin-bottom: 0;
+}
+
+.input__input {
+  position: relative;
+  width: 100%;
+  padding-left: 8px;
+  outline: none;
+  color: #757575;
+  font-size: 20px;
+  border: none;
+  border-bottom: 2px solid #1a1a1a;
+  background-color: transparent;
+  z-index: 11;
+}
+
+.input__input ~ .input__label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #757575;
+  transition: .4s;
+}
+
+input:focus ~ .input__label {
+  transform: translateY(-20px);
+  font-size: 0.8em;
+  letter-spacing: 0.1em;
+}
+
+.input__label--date {
+  transform: translateY(-20px);
+  transition: none;
+}
+
+.input__label--filled {
+  transform: translateY(-20px);
+  font-size: 0.8em;
+  letter-spacing: 0.1em;
+}
