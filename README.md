@@ -1,2 +1,5 @@
-# minha-morada
-Repositório para a disciplina Projeto Integrador II, da Universidade de São José
+# Minha Morada
+
+
+Repositório para a disciplina Projeto Integrador II, da Universidade de São José;
+Daniel Morais de Mello e Paula Machado Teixeira
