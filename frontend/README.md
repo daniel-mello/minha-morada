@@ -10,4 +10,4 @@ Projeto Minha Morada (USJ).
 
 ## Equipe
 
-Daniel Mello, Paula Machado, Amanda Gnecco, Lucas Machado.
+Daniel Mello, Paula Machado
