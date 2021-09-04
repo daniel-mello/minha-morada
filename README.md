@@ -4,4 +4,4 @@ Repositório para a disciplina Projeto Integrador II, da Universidade de São Jo
 
 ## Equipe
 
-Daniel Morais de Mello e Paula Machado Teixeira
+Daniel Morais de Mello, Paula Machado Teixeira, Lucas Machado de Oliveira e Amanda Gnecco
