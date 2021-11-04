@@ -53,7 +53,7 @@ const createRoom = (e) => {
   e.preventDefault();
 
   const body = {
-    "nomeEspaco": {
+    "espaco": {
       ...createData
     }
   }
@@ -72,13 +72,48 @@ const createRoom = (e) => {
   ));
 };
 
+const editRoom = (e, id) => {
+  e.preventDefault();
+
+  const body = {
+    "nomeEspaco": {
+      ...editData
+    }
+  }
+
+  RoomService.editRoom(id, body).then(response => {
+    toast.success(response.data.mensagem, {
+      position: toast.POSITION.TOP_CENTER
+    });
+    return setRooms([ ...rooms, editData ]);
+  }).catch(e => (
+    toast.error(e.mensagem, {
+      position: toast.POSITION.TOP_CENTER
+    })
+  ));
+};
+
+const deleteRoom = id => {
+  RoomService.deleteRoom(id).then(response => {
+    toast.success(response.data.mensagem, {
+      position: toast.POSITION.TOP_CENTER
+    });
+    getRooms();
+  }).catch(e => (
+    toast.error(e.mensagem, {
+      position: toast.POSITION.TOP_CENTER
+    })
+  ));
+};
 
   return (
     <div className="content">
       {tabActive === "search" && 
         <Search 
           room={room}
+          rooms={rooms}
           getRooms={getRooms}
+          handleSelectRoom={handleSelectRoom}
         />}
       {tabActive === "add" && 
         <Add 
@@ -90,21 +125,18 @@ const createRoom = (e) => {
         />}
       {tabActive === "edit" && 
         <Edit
-          // editData={editData}
-          // apartment={apartment}
-          // numbersApt={numbersApt}
-          // setEditData={setEditData}
-          // selectBlocks={selectBlocks}
-          // editApartment={editApartment}
-          // handleSelectApartment={handleSelectApartment}
+          room={room}
+          rooms={rooms}
+          editRoom={editRoom}
+          editData={editData}
+          setEditData={setEditData}
+          handleSelectRoom={handleSelectRoom}
         />}
       {tabActive === "delete" && 
         <Delete 
-          // apartment={apartment}
-          // numbersApt={numbersApt}
-          // selectBlocks={selectBlocks}
-          // deleteApartment={deleteApartment}
-          // handleSelectApartment={handleSelectApartment}
+          rooms={rooms}
+          deleteRoom={deleteRoom}
+          handleSelectRoom={handleSelectRoom}
         />}
     </div>
   );

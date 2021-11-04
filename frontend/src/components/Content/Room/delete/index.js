@@ -4,8 +4,10 @@ import { Button } from "../../../Button";
 import { Card } from "../../../Card";
 import "../styles.css";
 
-export const Delete = ({ rooms }) => {
+export const Delete = ({ rooms, deleteRoom }) => {
   const [active, setActive] = useState("");
+
+  console.log(active)
 
   return (
     <>
@@ -17,9 +19,11 @@ export const Delete = ({ rooms }) => {
             return (
               <div className="is-pointer" onClick={() => setActive(index)}>
                 <Card key={`room-${index}`} className={`card__name ${isActive && "card--selected"}`}>
-                  {item}
+                  {item.nomeEspaco}
                 </Card>
-                {isActive && <Button className="button button--red">Excluir Espaço</Button>}
+                {isActive && 
+                  <Button onClick={() => deleteRoom(active)} className="button button--red">Excluir Espaço</Button>
+                }
               </div>
             )
           })}

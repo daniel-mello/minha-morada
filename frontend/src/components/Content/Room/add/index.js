@@ -3,7 +3,7 @@ import { Button } from "../../../Button";
 
 export const Add = ({ createData, setCreateData, createRoom }) => {
   return (
-    <>
+    <form onSubmit={createRoom} className="form">
       <div className="content__half">
         <h2 className="content__title">Cadastrar Espaço</h2>
         <Input 
@@ -16,6 +16,6 @@ export const Add = ({ createData, setCreateData, createRoom }) => {
         
         <Button className="button--fit-content">Cadastrar</Button>
       </div>
-    </>
+    </form>
   )
 }
