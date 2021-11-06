@@ -43,11 +43,6 @@ export const Resident = ({ tabActive }) => {
     setSearchResult(aptResident ? [apartment.morador] : []);
   }, [apartment]);
 
-  useEffect(() => {
-    const results = residents.filter(person => person.nome.includes(searchTerm));
-    setSearchResult(results);
-  }, [searchTerm]);
-
   // HANDLERS
   // _____________
   const handleSelectApartment = id => {
@@ -59,7 +54,14 @@ export const Resident = ({ tabActive }) => {
   };
   
   const handleSearchResident = e => {
-    setSearchTerm(e.target.value)
+    const results = residents.filter(person => person.nome.includes(searchTerm));
+    if(results.length === 0) {
+      toast.warning("Condômino não encontrado", {
+        position: toast.POSITION.TOP_CENTER
+      })
+    }
+
+    setSearchResult(results);
   };
 
   // HTTP METHODS
@@ -183,6 +185,7 @@ export const Resident = ({ tabActive }) => {
           selectBlocks={selectBlocks}
           getResidents={getResidents}
           searchResult={searchResult}
+          setSearchTerm={setSearchTerm}
           handleSearchResident={handleSearchResident}
           handleSelectApartment={handleSelectApartment}
         />

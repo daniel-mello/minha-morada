@@ -13,6 +13,7 @@ export const Search = ({
   selectBlocks,
   getResidents,
   searchResult,
+  setSearchTerm,
   handleSearchResident,
   handleSelectApartment
 }) => {
@@ -32,7 +33,7 @@ export const Search = ({
           className="input--small"
           label="Nome do Condômino"
           value={searchTerm}
-          onChange={handleSearchResident}
+          onChange={e => setSearchTerm(e.target.value)}
         />
 
         <div className="content__item">
@@ -52,7 +53,7 @@ export const Search = ({
           />
         </div>
 
-        <Button className="button--fit-content">Pesquisar</Button>
+        <Button className="button--fit-content" onClick={handleSearchResident}>Pesquisar</Button>
       </div>
 
       <div className="content__half">
