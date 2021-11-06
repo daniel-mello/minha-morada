@@ -8,24 +8,18 @@ import { Delete } from "./delete";
 
 import RoomService from "../../../services/RoomService";
 
-const initialEditState = [
-
-];
-
 export const Room = ({ tabActive }) => {
-  const [room, setRoom] = useState({});
   const [rooms, setRooms] = useState([]);
+  const [editData, setEditData] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [createData, setCreateData] = useState({});
   const [searchResult, setSearchResult] = useState([]);
-  const [editData, setEditData] = useState("");
 
   useEffect(() => {
     getRooms();
   }, []);
 
   useEffect(() => {
-    setRoom({});
     getRooms();
     setSearchResult([]);
   }, [tabActive]);
@@ -55,8 +49,6 @@ export const Room = ({ tabActive }) => {
   const getRooms = () => {
     RoomService.getRooms().then(response => {
       const data = response.data.listaEspacos;
-      console.log("data no get: ", data)
-
       setRooms(data);
     }).catch(e => (
       toast.error(e.mensagem, {
@@ -96,8 +88,6 @@ export const Room = ({ tabActive }) => {
       }
     };
 
-    console.log("body no editRoom: ", body);
-
     RoomService.editRoom(id, body).then(response => {
       console.log(response)
       toast.success("Espaço editado com sucesso!", {
@@ -112,7 +102,6 @@ export const Room = ({ tabActive }) => {
   };
 
   const deleteRoom = id => {
-    console.log("id do delete: ", id)
     RoomService.deleteRoom(id).then(response => {
       toast.success(response.data.mensagem, {
         position: toast.POSITION.TOP_CENTER
@@ -145,18 +134,15 @@ export const Room = ({ tabActive }) => {
         />}
       {tabActive === "edit" && 
         <Edit
-          room={room}
           rooms={rooms}
           editRoom={editRoom}
           editData={editData}
           setEditData={setEditData}
-          handleSelectRoom={handleSelectRoom}
         />}
       {tabActive === "delete" && 
         <Delete 
           rooms={rooms}
           deleteRoom={deleteRoom}
-          handleSelectRoom={handleSelectRoom}
         />}
     </div>
   );

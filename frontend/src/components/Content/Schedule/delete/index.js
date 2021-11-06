@@ -4,7 +4,7 @@ import { Button } from "../../../Button";
 import { Card } from "../../../Card";
 import "../../styles.css";
 
-export const Delete = ({ roomSchedules }) => {
+export const Delete = ({ rooms }) => {
   const [active, setActive] = useState(null);
 
   const deleteItem = index => {
@@ -22,7 +22,7 @@ export const Delete = ({ roomSchedules }) => {
           <span>Status:</span>
         </div>
 
-        {roomSchedules.map((room, index) => {
+        {rooms.map((room, index) => {
           const classActive = active === index;
           const isAvailable = room.status === "available";
           const classAvailable = isAvailable ? "available" : "occupied";
