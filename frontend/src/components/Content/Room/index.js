@@ -15,105 +15,125 @@ const initialEditState = [
 export const Room = ({ tabActive }) => {
   const [room, setRoom] = useState({});
   const [rooms, setRooms] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
   const [createData, setCreateData] = useState({});
-  const [editData, setEditData] = useState(initialEditState);
+  const [searchResult, setSearchResult] = useState([]);
+  const [editData, setEditData] = useState("");
 
   useEffect(() => {
     getRooms();
-    console.log({rooms})
   }, []);
 
   useEffect(() => {
     setRoom({});
     getRooms();
+    setSearchResult([]);
   }, [tabActive]);
 
+
+// HANDLERS
+// _____________
   const handleSelectRoom = id => {
     const selectRoom = rooms.find(it => it.numeroApto === id);
 
     // getRoom(selectApt.id);
   };
 
-// HTTP METHODS
-// __________________
-const getRooms = () => {
-  RoomService.getRooms().then(response => {
-    const data = response.data.listaEspacos;
-    console.log({data})
-
-    setRooms(data);
-  }).catch(e => (
-    toast.error(e.mensagem, {
-      position: toast.POSITION.TOP_CENTER
-    })
-  ));
-};
-
-const createRoom = (e) => {
-  e.preventDefault();
-
-  const body = {
-    "espaco": {
-      ...createData
+  const handleSearchRoom = () => {
+    const results = rooms.filter(room => room.nomeEspaco.includes(searchTerm));
+    if(results.length === 0) {
+      toast.warning("Espaço não encontrado", {
+        position: toast.POSITION.TOP_CENTER
+      })
     }
-  }
 
-  console.log(body)
+    setSearchResult(results);
+  };
 
-  RoomService.createRoom(body).then(response => {
-    toast.success(response.data.mensagem, {
-      position: toast.POSITION.TOP_CENTER
-    });
-    return setRooms([ ...rooms, createData ]);
-  }).catch(e => (
-    toast.error(e.mensagem, {
-      position: toast.POSITION.TOP_CENTER
-    })
-  ));
-};
+  // HTTP METHODS
+  // __________________
+  const getRooms = () => {
+    RoomService.getRooms().then(response => {
+      const data = response.data.listaEspacos;
+      console.log("data no get: ", data)
 
-const editRoom = (e, id) => {
-  e.preventDefault();
+      setRooms(data);
+    }).catch(e => (
+      toast.error(e.mensagem, {
+        position: toast.POSITION.TOP_CENTER
+      })
+    ));
+  };
 
-  const body = {
-    "nomeEspaco": {
-      ...editData
+  const createRoom = (e) => {
+    e.preventDefault();
+
+    const body = {
+      "espaco": {
+        ...createData
+      }
     }
-  }
 
-  RoomService.editRoom(id, body).then(response => {
-    toast.success(response.data.mensagem, {
-      position: toast.POSITION.TOP_CENTER
-    });
-    return setRooms([ ...rooms, editData ]);
-  }).catch(e => (
-    toast.error(e.mensagem, {
-      position: toast.POSITION.TOP_CENTER
-    })
-  ));
-};
+    RoomService.createRoom(body).then(response => {
+      toast.success("Espaço criado com sucesso!", {
+        position: toast.POSITION.TOP_CENTER
+      });
+      setCreateData("");
+      return setRooms([ ...rooms, createData ]);
+    }).catch(e => (
+      toast.error("Erro: Tente novamente ou entre em contato conosco.", {
+        position: toast.POSITION.TOP_CENTER
+      })
+    ));
+  };
 
-const deleteRoom = id => {
-  RoomService.deleteRoom(id).then(response => {
-    toast.success(response.data.mensagem, {
-      position: toast.POSITION.TOP_CENTER
-    });
-    getRooms();
-  }).catch(e => (
-    toast.error(e.mensagem, {
-      position: toast.POSITION.TOP_CENTER
-    })
-  ));
-};
+  const editRoom = (e, id) => {
+    e.preventDefault();
+
+    const body = {
+      espaco: {
+        nomeEspaco: editData
+      }
+    };
+
+    console.log("body no editRoom: ", body);
+
+    RoomService.editRoom(id, body).then(response => {
+      console.log(response)
+      toast.success("Espaço editado com sucesso!", {
+        position: toast.POSITION.TOP_CENTER
+      });
+      return getRooms();
+    }).catch(e => (
+      toast.error("Erro: Tente novamente ou entre em contato conosco.", {
+        position: toast.POSITION.TOP_CENTER
+      })
+    ));
+  };
+
+  const deleteRoom = id => {
+    console.log("id do delete: ", id)
+    RoomService.deleteRoom(id).then(response => {
+      toast.success(response.data.mensagem, {
+        position: toast.POSITION.TOP_CENTER
+      });
+      getRooms();
+    }).catch(e => (
+      toast.error("Erro: Tente novamente ou entre em contato conosco.", {
+        position: toast.POSITION.TOP_CENTER
+      })
+    ));
+  };
 
   return (
     <div className="content">
       {tabActive === "search" && 
         <Search 
-          room={room}
           rooms={rooms}
-          getRooms={getRooms}
-          handleSelectRoom={handleSelectRoom}
+          searchTerm={searchTerm}
+          searchResult={searchResult}
+          setSearchTerm={setSearchTerm}
+          handleSearchRoom={handleSearchRoom}
         />}
       {tabActive === "add" && 
         <Add 

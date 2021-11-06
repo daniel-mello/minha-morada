@@ -6,23 +6,24 @@ import "../styles.css";
 
 export const Delete = ({ rooms, deleteRoom }) => {
   const [active, setActive] = useState("");
+  const [selectedRoom, setSelectedRoom] = useState({});
 
-  console.log(active)
+  console.log(selectedRoom)
 
   return (
     <>
       <div className="content__half">
-        <h2 className="content__title">Editar Espaço</h2>
+        <h2 className="content__title">Deletar Espaço</h2>
           {rooms.map((item, index) => {
             const isActive = active === index;
 
             return (
-              <div className="is-pointer" onClick={() => setActive(index)}>
+              <div className="is-pointer" onClick={() => (setActive(index), setSelectedRoom(item))}>
                 <Card key={`room-${index}`} className={`card__name ${isActive && "card--selected"}`}>
                   {item.nomeEspaco}
                 </Card>
                 {isActive && 
-                  <Button onClick={() => deleteRoom(active)} className="button button--red">Excluir Espaço</Button>
+                  <Button onClick={() => deleteRoom(selectedRoom.id)} className="button button--red">Excluir Espaço</Button>
                 }
               </div>
             )
