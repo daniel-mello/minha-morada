@@ -8,8 +8,6 @@ export const Delete = ({ rooms, deleteRoom }) => {
   const [active, setActive] = useState("");
   const [selectedRoom, setSelectedRoom] = useState({});
 
-  console.log(selectedRoom)
-
   return (
     <>
       <div className="content__half">

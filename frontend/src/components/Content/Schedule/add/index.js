@@ -1,7 +1,7 @@
 import { Card } from "../../../Card";
 import { Button } from "../../../Button";
 
-export const Add = ({ roomSchedules }) => {
+export const Add = ({ rooms, schedules }) => {
   return (
     <div className="content content--flex-column">
       <h2 className="content__title">Cadastrar Agendamentos</h2>
@@ -13,7 +13,7 @@ export const Add = ({ roomSchedules }) => {
           <span>Status:</span>
         </div>
 
-        {roomSchedules.map((room, index) => {
+        {rooms.map((room, index) => {
           const isAvailable = room.status === "available";
 
           return (

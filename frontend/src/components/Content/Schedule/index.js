@@ -1,29 +1,45 @@
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+
 import { Add } from "./add";
 import { Delete } from "./delete";
 
-const roomSchedules = [
-  {
-    name: "Salão de Festas",
-    date: "22/07/2020",
-    status: "available"
-  },
-  {
-    name: "Salão Gourmet",
-    date: "02/05/2020",
-    status: "unavailable"
-  },
-  {
-    name: "Sala de Jogos",
-    date: "19/01/2020",
-    status: "unavailable"
-  }
-];
+import RoomService from "../../../services/RoomService";
+import ScheduleService from "../../../services/ScheduleService";
 
 export const Schedule = ({ tabActive }) => {
+  const [rooms, setRooms] = useState([]);
+  const [schedules, setSchedules] = useState([]);
+
+  useEffect(() => {
+    getRooms();
+    getSchedules();
+  }, []);
+
+  // HTTP METHODS
+  // __________________
+  const getRooms = () => {
+    RoomService.getRooms().then(response => {
+      const data = response.data.listaEspacos;
+      setRooms(data);
+    }).catch(e => (
+      toast.error(e.mensagem, {
+        position: toast.POSITION.TOP_CENTER
+      })
+    ));
+  };
+
+  const getSchedules = () => {
+    ScheduleService.getSchedules().then(response => {
+      const data = response.data.listaAgendamentosEspaços;
+      setSchedules(data);
+    })
+  };
+
   return (
     <>
-      {tabActive === "add" && <Add roomSchedules={roomSchedules} />}
-      {tabActive === "delete" && <Delete roomSchedules={roomSchedules} />}
+      {tabActive === "add" && <Add rooms={rooms} schedules={schedules} />}
+      {tabActive === "delete" && <Delete rooms={rooms} schedules={schedules} />}
     </>
   );
 }
