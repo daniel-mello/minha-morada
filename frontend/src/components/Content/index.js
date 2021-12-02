@@ -5,7 +5,7 @@ import { Apartment } from "./Apartment";
 import { Assembly } from "./Assembly";
 import { Message } from "./Message";
 
-export const Content = ({ menuActive, tabActive }) => {
+export const Content = ({ menuActive, tabActive, toggleModal }) => {
   switch (menuActive) {
     case "resident":
       return <Resident tabActive={tabActive} />;
@@ -16,7 +16,7 @@ export const Content = ({ menuActive, tabActive }) => {
     case "apartment":
       return <Apartment tabActive={tabActive} />;
     case "assembly":
-      return <Assembly tabActive={tabActive} />;
+      return <Assembly tabActive={tabActive} toggleModal={toggleModal} />;
     case "message":
       return <Message tabActive={tabActive} />;
     default:

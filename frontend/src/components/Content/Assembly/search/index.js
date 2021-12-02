@@ -4,7 +4,7 @@ import { Input } from "../../../Input";
 import { Button } from "../../../Button";
 import "../../styles.css";
 
-export const Search = ({ assemblies }) => {
+export const Search = ({ assemblies, toggleModal }) => {
   const handleActiveCard = (index) => {
     const getCard = document.getElementById(`card-assembly-${index}`);
     getCard.classList.toggle("isActive")
@@ -46,7 +46,7 @@ export const Search = ({ assemblies }) => {
           <Card key={`room-schedule-${index}`} className={`card-assembly-${index} ${isActive}`}>
             <span className="card__name">{assembly.titulo}</span>
             <span className="card__name">{assembly.dataHora}</span>
-            <Button className="button--fit-content" onClick={() => window.open(assembly.ata)}>Ver Ata</Button>
+            <Button className="button--fit-content" onClick={() => toggleModal(assembly.ata)}>Ver Ata</Button>
           </Card>
         ))}
       </div>

@@ -23,7 +23,7 @@ const assemblies = [
   },
 ]
 
-export const Assembly = ({ tabActive }) => {
+export const Assembly = ({ tabActive, toggleModal }) => {
   const [assembly, setAssembly] = useState({});
   const [assemblies, setAssemblies] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -136,6 +136,7 @@ export const Assembly = ({ tabActive }) => {
         <Search 
           assemblies={assemblies}
           searchTerm={searchTerm}
+          toggleModal={toggleModal}
           searchResult={searchResult}
           setSearchTerm={setSearchTerm}
           handleSearchAssembly={handleSearchAssembly}
