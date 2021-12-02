@@ -1,9 +1,19 @@
+import { useState } from "react";
 import { Card } from "../../../Card";
 import { Input } from "../../../Input";
 import { Button } from "../../../Button";
 import "../../styles.css";
 
 export const Search = ({ assemblies }) => {
+  const handleActiveCard = (index) => {
+    const getCard = document.getElementById(`card-assembly-${index}`);
+    getCard.classList.toggle("isActive")
+    
+    // usar o handleSelectAssembly
+  };
+
+  const isActive = "";
+
   return (
     <div className="content content--flex-column">
       <h2 className="content__title">Consultar Assembléias</h2>
@@ -33,10 +43,10 @@ export const Search = ({ assemblies }) => {
         </div>
 
         {assemblies.map((assembly, index) => (
-          <Card key={`room-schedule-${index}`}>
-            <span className="card__name">{assembly.type}</span>
-            <span className="card__name">{assembly.date}</span>
-            <Button className="button--fit-content">Ver Ata</Button>
+          <Card key={`room-schedule-${index}`} className={`card-assembly-${index} ${isActive}`}>
+            <span className="card__name">{assembly.titulo}</span>
+            <span className="card__name">{assembly.dataHora}</span>
+            <Button className="button--fit-content" onClick={() => window.open(assembly.ata)}>Ver Ata</Button>
           </Card>
         ))}
       </div>

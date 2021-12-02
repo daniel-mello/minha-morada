@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const RESIDENT_API_URL = "http://localhost:8080/moradores/"
+const RESIDENT_API_URL = "https://minha-morada-api.herokuapp.com/moradores/"
 
 class ResidentService {
 

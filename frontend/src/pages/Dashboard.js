@@ -5,7 +5,7 @@ import { MainBox } from "../components/MainBox";
 import { Footer } from "../components/Footer";
 
 export const Dashboard = () => {
-  const [menuActive, setMenuActive] = useState("resident");
+  const [menuActive, setMenuActive] = useState("apartment");
   const [tabActive, setTabActive] = useState("add");
 
   const handleNavigation = menu => {

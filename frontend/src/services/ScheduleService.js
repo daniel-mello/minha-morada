@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const SCHEDULE_API_URL = "http://localhost:8080/agendamento/"
+const SCHEDULE_API_URL = "https://minha-morada-api.herokuapp.com/agendamento/"
 
 class ScheduleService {
   

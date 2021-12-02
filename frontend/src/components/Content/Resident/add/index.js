@@ -37,6 +37,8 @@ export const Add = ({ createData, setCreateData, createResident, numbersApt, apa
         />
         <Input 
           name="name"
+          type="date"
+          isDate={true}
           className="input--small"
           label="Data de Nascimento"
           value={createData.dataNascimento}

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const ASSEMBLY_API_URL = "http://localhost:8080/assembleia/"
+const ASSEMBLY_API_URL = "https://minha-morada-api.herokuapp.com/assembleia/"
 
 class AssemblyService {
   

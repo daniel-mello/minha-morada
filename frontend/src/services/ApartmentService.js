@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const APARTMENT_API_URL = "http://localhost:8080/apartamentos/"
+const APARTMENT_API_URL = "https://minha-morada-api.herokuapp.com/apartamentos/"
 
 class ApartmentService {
   

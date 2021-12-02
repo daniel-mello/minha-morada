@@ -77,6 +77,8 @@ export const Assembly = ({ tabActive }) => {
       }
     }
 
+    console.log(body)
+
     AssemblyService.createAssembly(body).then(response => {
       toast.success("Assembléia registrada com sucesso!", {
         position: toast.POSITION.TOP_CENTER
@@ -138,7 +140,14 @@ export const Assembly = ({ tabActive }) => {
           setSearchTerm={setSearchTerm}
           handleSearchAssembly={handleSearchAssembly}
         />}
-      {tabActive === "add" && <Add />}
+      {tabActive === "add" && 
+        <Add 
+          createData={createData}
+          assemblies={assemblies}
+          setCreateData={setCreateData}
+          setAssemblies={setAssemblies}
+          createAssembly={createAssembly}
+        />}
       {tabActive === "edit" && <Edit assemblies={assemblies} />}
       {tabActive === "delete" && <Delete assemblies={assemblies} />}
     </div>

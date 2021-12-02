@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const ROOM_API_URL = "http://localhost:8080/espacos/"
+const ROOM_API_URL = "https://minha-morada-api.herokuapp.com/espacos/"
 
 class RoomService {
   

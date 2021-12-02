@@ -1,6 +1,11 @@
 export const Add = ({ contactsList }) => {
   return (
     <div className="content content__messages">
+
+      <div className="overlay">
+        EM BREVE
+      </div>
+
       <div className="contacts__list">
         {contactsList.map((contact, index) => (
           <div className="contacts__item" key={`contact-${index}`}>

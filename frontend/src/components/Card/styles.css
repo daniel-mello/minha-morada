@@ -26,6 +26,14 @@
   font-weight: 800;
 }
 
+.card__name.schedule__name {
+  width: 45%;
+}
+
+.card__name.schedule__date {
+  width: 25%;
+}
+
 .card__key {
   color: #757575;
   font-weight: 800;

@@ -4,50 +4,37 @@ import { Button } from "../../../Button";
 import { Card } from "../../../Card";
 import "../../styles.css";
 
-export const Delete = ({ roomSchedules }) => {
-  const [active, setActive] = useState(null);
-
-  const deleteItem = index => {
-    return alert(`Item ${index} deletado.`)
-  }
+export const Delete = ({ rooms, deleteSchedule }) => {
 
   return (
-    <>
+    <div className="content content--flex-column">
       <h2 className="content__title">Cancelar Agendamentos</h2>
 
       <div className="content__bottom">
         <div className="content__header">
-          <span style={{marginRight: 110}}>Espaço:</span>
-          <span>Data:</span>
+          <span className="content__header--name">Espaço:</span>
+          <span className="content__header--date">Data:</span>
           <span>Status:</span>
         </div>
 
-        {roomSchedules.map((room, index) => {
-          const classActive = active === index;
-          const isAvailable = room.status === "available";
-          const classAvailable = isAvailable ? "available" : "occupied";
+        {rooms.map((room, index) => {
+          const notAvailable = room && room.agendamentoEspaco.length > 0;
+          const agendamento = notAvailable && room.agendamentoEspaco[0];
 
           return (
-            <Card
-              key={`room-schedule-${index}`}
-              onClick={() => setActive(index)}
-              className={`card--pointer ${classActive && "card--selected"}`}
-            >
-              <span className="card__name">{room.name}</span>
-              <span className="card__name">{room.date}</span>
-              <Button className={`button button--fit-content button--card ${classAvailable}`}>
-                {isAvailable ? "Agendar" : "Ocupado"}
+            <Card key={`room-schedule-${index}`}>
+              <span className="card__name schedule__name">{room.nomeEspaco}</span>
+              <span className="card__name schedule__date">{agendamento.dataHoraAgendamento}</span>
+              <Button 
+                onClick={e => notAvailable ? deleteSchedule(room.id) : null}
+                className={`button button--fit-content button--card ${notAvailable ? "occupied" : "available"}`}
+              >
+                {notAvailable ? "Cancelar" : "Espaço Livre"}
               </Button>
             </Card>
           )
         })}
       </div>
-
-      <div className="content-item">
-        <Button className="button button--red" onClick={() => deleteItem(active)}>
-          Excluir Agendamento
-        </Button>
-      </div>
-    </>
+    </div>
   )
 }

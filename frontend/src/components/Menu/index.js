@@ -6,6 +6,10 @@ import "./styles.css";
 export const Menu = ({ menuActive, handleNavigation }) => {
   const menuItems = [
     {
+      icon: "apartment",
+      label: "Apartamentos"
+    },
+    {
       icon: "resident",
       label: "Condôminos"
     },
@@ -16,10 +20,6 @@ export const Menu = ({ menuActive, handleNavigation }) => {
     {
       icon: "schedule",
       label: "Agendar Espaços"
-    },
-    {
-      icon: "apartment",
-      label: "Apartamentos"
     },
     {
       icon: "assembly",
