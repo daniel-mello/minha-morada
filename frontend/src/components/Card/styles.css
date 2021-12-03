@@ -26,11 +26,11 @@
   font-weight: 800;
 }
 
-.card__name.schedule__name {
+.card__name.list__name {
   width: 45%;
 }
 
-.card__name.schedule__date {
+.card__name.list__date {
   width: 25%;
 }
 

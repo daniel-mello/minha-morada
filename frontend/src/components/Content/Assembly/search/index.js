@@ -1,19 +1,11 @@
 import { useState } from "react";
+import moment from "moment";
 import { Card } from "../../../Card";
 import { Input } from "../../../Input";
 import { Button } from "../../../Button";
 import "../../styles.css";
 
-export const Search = ({ assemblies, toggleModal }) => {
-  const handleActiveCard = (index) => {
-    const getCard = document.getElementById(`card-assembly-${index}`);
-    getCard.classList.toggle("isActive")
-    
-    // usar o handleSelectAssembly
-  };
-
-  const isActive = "";
-
+export const Search = ({ searchTerm, toggleModal, searchResult, setSearchTerm, handleSearchAssembly }) => {
   return (
     <div className="content content--flex-column">
       <h2 className="content__title">Consultar Assembléias</h2>
@@ -21,35 +13,44 @@ export const Search = ({ assemblies, toggleModal }) => {
         <div className="content__item content__item--no-margin">
           <Input
             name="type"
-            label="Digite um tipo de assembléia"
             className="input--small"
+            value={searchTerm.titulo}
+            label="Digite um tipo de assembléia"
+            onChange={e => setSearchTerm({ ...searchTerm, titulo: e.target.value })}
           />
         </div>
         <div className="content__date">
           <Input
-            name="date"
+            name="name"
             type="date"
             isDate={true}
-            label="Selecione uma data"
+            value={searchTerm.data}
+            onChange={e => setSearchTerm({ ...searchTerm, data: e.target.value })}
           />
         </div>
       </div>
 
       <div className="content__bottom">
         <div className="content__header">
-          <span style={{marginRight: 110}}>Assembléia:</span>
-          <span>Data:</span>
-          <span>Status:</span>
+          <span className="content__header--name">Assembléia:</span>
+          <span className="content__header--date">Data:</span>
+          <span >Status:</span>
         </div>
 
-        {assemblies.map((assembly, index) => (
-          <Card key={`room-schedule-${index}`} className={`card-assembly-${index} ${isActive}`}>
-            <span className="card__name">{assembly.titulo}</span>
-            <span className="card__name">{assembly.dataHora}</span>
-            <Button className="button--fit-content" onClick={() => toggleModal(assembly.ata)}>Ver Ata</Button>
-          </Card>
-        ))}
+        {searchResult.map((assembly, index) => {
+          const date = moment(assembly.dataHora).format("DD/MM/YYYY");
+
+          return (
+            <Card key={`room-schedule-${index}`} className={`card-assembly-${index}`}>
+              <span className="card__name list__name">{assembly.titulo}</span>
+              <span className="card__name list__date">{date}</span>
+              <Button className="button--fit-content button--card" onClick={() => toggleModal(assembly.ata)}>Ver Ata</Button>
+            </Card>
+          )
+        })}
       </div>
+
+      <Button className="button--fit-content" onClick={() => handleSearchAssembly()}>Pesquisar</Button>
     </div>
   )
 }

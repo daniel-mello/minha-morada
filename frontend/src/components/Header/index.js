@@ -7,7 +7,7 @@ export const Header = ({ isDashboard }) => {
   return (
     <header className="header">
       <Container>
-        <Link href="/index.html">
+        <Link href="/">
           <div className="header__logo">
             <Icon icon="logo" width={80} height={80} />
             <span className="header__text">Minha Morada</span>

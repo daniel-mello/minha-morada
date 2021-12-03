@@ -3,11 +3,13 @@ import { Header } from "../components/Header";
 import { Menu } from "../components/Menu";
 import { MainBox } from "../components/MainBox";
 import { Modal } from "../components/Modal";
+import { ModalEdit } from "../components/ModalEdit";
 import { Footer } from "../components/Footer";
 
 export const Dashboard = () => {
   const [menuActive, setMenuActive] = useState("apartment");
   const [showModal, setShowModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
   const [modalContent, setModalContent] = useState("");
   const [tabActive, setTabActive] = useState("add");
 
@@ -16,11 +18,13 @@ export const Dashboard = () => {
     setMenuActive(menu);
   };
 
-  const toggleModal = ata => {
-    console.log("toggle")
-    console.log("ata: ", ata)
+  const toggleModal = (ata, edit = false) => {
     setModalContent(ata);
-    setShowModal(!showModal);
+    if(edit) {
+      setShowEditModal(!showEditModal);
+    } else {
+      setShowModal(!showModal);
+    }
   };
 
   return(
@@ -38,6 +42,7 @@ export const Dashboard = () => {
       />
 
       {showModal && <Modal modalContent={modalContent} toggleModal={toggleModal} />}
+      {showEditModal && <ModalEdit modalContent={modalContent} toggleModal={toggleModal} />}
       <Footer />
     </div>
   )

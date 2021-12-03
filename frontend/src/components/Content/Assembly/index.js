@@ -8,28 +8,13 @@ import { Delete } from "./delete";
 
 import AssemblyService from "../../../services/AssemblyService";
 
-const assemblies = [
-  {
-    type: "Assembléia Extraordinária",
-    date: "22/07/2020",
-  },
-  {
-    type: "Assembléia Geral Ordinária",
-    date: "20/06/2020",
-  },
-  {
-    type: "Assembléia Extraordinária",
-    date: "19/05/2020",
-  },
-]
-
 export const Assembly = ({ tabActive, toggleModal }) => {
   const [assembly, setAssembly] = useState({});
   const [assemblies, setAssemblies] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState({titulo: undefined, data: undefined});
   const [createData, setCreateData] = useState({});
   const [searchResult, setSearchResult] = useState([]);
-  const [editData, setEditData] = useState("");
+  const [editData, setEditData] = useState({});
 
   useEffect(() => {
     getAssemblies();
@@ -45,15 +30,24 @@ export const Assembly = ({ tabActive, toggleModal }) => {
   };
 
   const handleSearchAssembly = () => {
-    const results = assemblies.filter(assembly => assembly.nomeEspaco.includes(searchTerm));
-    if(results.length === 0) {
-      toast.warning("Espaço não encontrado", {
+    const nameResults = assemblies.filter(assembly => assembly.titulo === searchTerm.titulo);
+    const dateResults = assemblies.filter(assembly => assembly.dataHora === searchTerm.data);
+    const resultsComp = [...nameResults, ...dateResults];
+
+    let final = uniq(resultsComp);
+
+    if(final.length === 0) {
+      toast.warning("Assembléia não encontrada", {
         position: toast.POSITION.TOP_CENTER
       })
     }
 
-    setSearchResult(results);
+    setSearchResult(final);
   };
+
+  function uniq(a) {
+    return Array.from(new Set(a));
+  }
 
   // HTTP METHODS
   // __________________
@@ -95,16 +89,16 @@ export const Assembly = ({ tabActive, toggleModal }) => {
   const editAssembly = (e, id) => {
     e.preventDefault();
 
+    console.log({e})
+
     const body = {
-      assembleia: {
-        editData
-      }
+      assembleia: editData
     };
 
     console.log("body no editAssembly: ", body);
 
     AssemblyService.editAssembly(id, body).then(response => {
-      console.log(response)
+      console.log({response})
       toast.success("Assembléia editada com sucesso!", {
         position: toast.POSITION.TOP_CENTER
       });
@@ -144,12 +138,17 @@ export const Assembly = ({ tabActive, toggleModal }) => {
       {tabActive === "add" && 
         <Add 
           createData={createData}
-          assemblies={assemblies}
           setCreateData={setCreateData}
-          setAssemblies={setAssemblies}
           createAssembly={createAssembly}
         />}
-      {tabActive === "edit" && <Edit assemblies={assemblies} />}
+      {tabActive === "edit" && 
+        <Edit 
+          editData={editData}
+          assemblies={assemblies}
+          toggleModal={toggleModal}
+          setEditData={setEditData}
+          editAssembly={editAssembly}
+      />}
       {tabActive === "delete" && <Delete assemblies={assemblies} />}
     </div>
   );

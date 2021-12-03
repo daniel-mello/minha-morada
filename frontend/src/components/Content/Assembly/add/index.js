@@ -2,7 +2,7 @@ import { Input } from "../../../Input";
 import { Button } from "../../../Button";
 import "../../styles.css";
 
-export const Add = ({ createData, assemblies, setCreateData, setAssemblies, createAssembly }) => {
+export const Add = ({ createData, setCreateData, createAssembly }) => {
   return (
     <form onSubmit={createAssembly} className="form">
       <div className="content content--flex-column">
@@ -42,7 +42,6 @@ export const Add = ({ createData, assemblies, setCreateData, setAssemblies, crea
             onChange={e => setCreateData({ ...createData, ata: e.target.value })}
           />
           <div style={{ display: "flex", justifyContent: "space-between" }}> 
-            {/* <div className="button button--yellow">Anexar Arquivo</div> */}
             <Button className="button">Cadastrar</Button>
           </div>
         </div>

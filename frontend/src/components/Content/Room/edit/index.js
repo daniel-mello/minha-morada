@@ -4,7 +4,7 @@ import { Input } from "../../../Input";
 import { Card } from "../../../Card";
 import { Button } from "../../../Button";
 
-export const Edit = ({ rooms, editRoom, editData, setEditData, }) => {
+export const Edit = ({ rooms, editRoom, editData, setEditData }) => {
   const [active, setActive] = useState("");
   const [selectedRoom, setSelectedRoom] = useState({});
 

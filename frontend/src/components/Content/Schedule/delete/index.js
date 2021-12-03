@@ -23,8 +23,8 @@ export const Delete = ({ rooms, deleteSchedule }) => {
 
           return (
             <Card key={`room-schedule-${index}`}>
-              <span className="card__name schedule__name">{room.nomeEspaco}</span>
-              <span className="card__name schedule__date">{agendamento.dataHoraAgendamento}</span>
+              <span className="card__name list__name">{room.nomeEspaco}</span>
+              <span className="card__name list__date">{agendamento.dataHoraAgendamento}</span>
               <Button 
                 onClick={e => notAvailable ? deleteSchedule(room.id) : null}
                 className={`button button--fit-content button--card ${notAvailable ? "occupied" : "available"}`}
