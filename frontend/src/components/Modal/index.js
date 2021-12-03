@@ -3,9 +3,6 @@ import { Button } from "../Button";
 import "./styles.css";
 
 export const Modal = ({ toggleModal, modalContent }) => {
-  console.log("daeeee sou a modal")
-  console.log(modalContent)
-
   return (
     <div className="modal">
       <div className="modal__background" onClick={() => toggleModal()} />

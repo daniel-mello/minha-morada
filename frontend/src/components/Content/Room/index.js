@@ -55,8 +55,6 @@ export const Room = ({ tabActive }) => {
   const getRooms = () => {
     RoomService.getRooms().then(response => {
       const data = response.data.listaEspacos;
-      console.log("data no get: ", data)
-
       setRooms(data);
     }).catch(e => (
       toast.error(e.mensagem, {
@@ -96,10 +94,7 @@ export const Room = ({ tabActive }) => {
       }
     };
 
-    console.log("body no editRoom: ", body);
-
     RoomService.editRoom(id, body).then(response => {
-      console.log(response)
       toast.success("Espaço editado com sucesso!", {
         position: toast.POSITION.TOP_CENTER
       });
@@ -112,7 +107,6 @@ export const Room = ({ tabActive }) => {
   };
 
   const deleteRoom = id => {
-    console.log("id do delete: ", id)
     RoomService.deleteRoom(id).then(response => {
       toast.success(response.data.mensagem, {
         position: toast.POSITION.TOP_CENTER

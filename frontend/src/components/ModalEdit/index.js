@@ -3,8 +3,6 @@ import { Button } from "../Button";
 import "./styles.css";
 
 export const ModalEdit = ({ toggleModal, modalContent }) => {
-  console.log({modalContent})
-
   return (
     <div className="modal">
       <div className="modal__background" onClick={() => toggleModal(null, true)} />

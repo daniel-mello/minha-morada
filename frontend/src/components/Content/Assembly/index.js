@@ -147,7 +147,12 @@ export const Assembly = ({ tabActive, toggleModal }) => {
           setSearchTerm={setSearchTerm}
           handleSearchAssembly={handleSearchAssembly}
       />}
-      {tabActive === "delete" && <Delete assemblies={assemblies} />}
+      {tabActive === "delete" && 
+        <Delete 
+          assemblies={assemblies}
+          toggleModal={toggleModal}
+          deleteAssembly={deleteAssembly}
+      />}
     </div>
   );
 }

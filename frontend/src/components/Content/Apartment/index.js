@@ -74,8 +74,6 @@ export const Apartment = ({ tabActive }) => {
       }
     }
 
-    console.log(body)
-
     ApartmentService.createApartment(body).then(response => {
       toast.success(response.data.mensagem, {
         position: toast.POSITION.TOP_CENTER

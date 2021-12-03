@@ -2,9 +2,6 @@ import { Card } from "../../../Card";
 import { Button } from "../../../Button";
 
 export const Add = ({ rooms, schedules, createSchedule }) => {
-  console.log({rooms})
-  console.log({schedules})
-
   return (
     <div className="content content--flex-column">
       <h2 className="content__title">Cadastrar Agendamentos</h2>
