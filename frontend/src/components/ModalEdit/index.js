@@ -15,7 +15,11 @@ export const ModalEdit = ({ toggleModal, modalContent }) => {
           </div>
         </header>
         <section className="modal__body">
-          <textarea className="modal__text">
+          <textarea             
+            // value={createData.ata}
+            // className="content__textarea"
+            // onChange={e => setCreateData({ ...createData, ata: e.target.value })}
+          >
             {modalContent}
           </textarea>
         </section>

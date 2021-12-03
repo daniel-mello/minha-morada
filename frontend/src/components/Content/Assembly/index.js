@@ -11,7 +11,7 @@ import AssemblyService from "../../../services/AssemblyService";
 export const Assembly = ({ tabActive, toggleModal }) => {
   const [assembly, setAssembly] = useState({});
   const [assemblies, setAssemblies] = useState([]);
-  const [searchTerm, setSearchTerm] = useState({titulo: undefined, data: undefined});
+  const [searchTerm, setSearchTerm] = useState({});
   const [createData, setCreateData] = useState({});
   const [searchResult, setSearchResult] = useState([]);
   const [editData, setEditData] = useState({});
@@ -71,8 +71,6 @@ export const Assembly = ({ tabActive, toggleModal }) => {
       }
     }
 
-    console.log(body)
-
     AssemblyService.createAssembly(body).then(response => {
       toast.success("Assembléia registrada com sucesso!", {
         position: toast.POSITION.TOP_CENTER
@@ -89,16 +87,11 @@ export const Assembly = ({ tabActive, toggleModal }) => {
   const editAssembly = (e, id) => {
     e.preventDefault();
 
-    console.log({e})
-
     const body = {
       assembleia: editData
     };
 
-    console.log("body no editAssembly: ", body);
-
     AssemblyService.editAssembly(id, body).then(response => {
-      console.log({response})
       toast.success("Assembléia editada com sucesso!", {
         position: toast.POSITION.TOP_CENTER
       });
@@ -111,7 +104,6 @@ export const Assembly = ({ tabActive, toggleModal }) => {
   };
 
   const deleteAssembly = id => {
-    console.log("id do delete: ", id)
     AssemblyService.deleteAssembly(id).then(response => {
       toast.success(response.data.mensagem, {
         position: toast.POSITION.TOP_CENTER
@@ -133,6 +125,8 @@ export const Assembly = ({ tabActive, toggleModal }) => {
           toggleModal={toggleModal}
           searchResult={searchResult}
           setSearchTerm={setSearchTerm}
+          getAssemblies={getAssemblies}
+          setSearchResult={setSearchResult}
           handleSearchAssembly={handleSearchAssembly}
         />}
       {tabActive === "add" && 
@@ -143,11 +137,15 @@ export const Assembly = ({ tabActive, toggleModal }) => {
         />}
       {tabActive === "edit" && 
         <Edit 
-          editData={editData}
           assemblies={assemblies}
-          toggleModal={toggleModal}
           setEditData={setEditData}
+          editData={editData}
+          searchTerm={searchTerm}
+          toggleModal={toggleModal}
           editAssembly={editAssembly}
+          searchResult={searchResult}
+          setSearchTerm={setSearchTerm}
+          handleSearchAssembly={handleSearchAssembly}
       />}
       {tabActive === "delete" && <Delete assemblies={assemblies} />}
     </div>

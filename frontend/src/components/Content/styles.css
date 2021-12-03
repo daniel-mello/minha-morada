@@ -59,6 +59,10 @@
   max-width: 15%;
 }
 
+.content__header--no-padding {
+  padding-right: 0;
+}
+
 .content__bottom {
   width: 100%;
 }
@@ -85,6 +89,26 @@
   border-radius: 8px;
   resize: vertical;
   outline: none;
+}
+
+.edit__card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.edit__card--row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.edit__textarea {
+  width: 100%;
+}
+
+.footer__assembly {
+  display: flex;
+  justify-content: flex-end;
 }
 
 /* MESSAGES */

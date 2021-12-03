@@ -13,6 +13,10 @@
   margin-bottom: 0;
 }
 
+.input--fit-content {
+  width: fit-content;
+}
+
 .input__input {
   position: relative;
   width: 100%;

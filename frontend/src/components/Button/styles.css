@@ -43,6 +43,10 @@
   margin-bottom: 8px;
 }
 
+.button--has-m-right {
+  margin-right: 16px;
+}
+
 .button--card.available {
   background-color: #3CB371;
 }

@@ -1,11 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import moment from "moment";
 import { Card } from "../../../Card";
 import { Input } from "../../../Input";
 import { Button } from "../../../Button";
 import "../../styles.css";
 
-export const Search = ({ searchTerm, toggleModal, searchResult, setSearchTerm, handleSearchAssembly }) => {
+export const Search = ({assemblies, searchTerm, getAssemblies, toggleModal, searchResult, setSearchResult, setSearchTerm, handleSearchAssembly }) => {
+
+  useEffect(() => {
+    getAssemblies();
+    setSearchResult(assemblies);
+  }, []);
+
   return (
     <div className="content content--flex-column">
       <h2 className="content__title">Consultar Assembléias</h2>
