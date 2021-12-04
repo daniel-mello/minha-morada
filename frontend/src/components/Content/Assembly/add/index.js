@@ -23,6 +23,7 @@ export const Add = ({ createData, setCreateData, createAssembly }) => {
               name="date"
               type="date"
               isDate={true}
+              required={true}
               label="Selecione uma data"
               value={createData.dataHora}
               onChange={e => setCreateData({ ...createData, dataHora: e.target.value })}
@@ -37,6 +38,7 @@ export const Add = ({ createData, setCreateData, createAssembly }) => {
             cols="30"
             id="minute"
             name="minute"
+            required={true}
             value={createData.ata}
             className="content__textarea"
             onChange={e => setCreateData({ ...createData, ata: e.target.value })}

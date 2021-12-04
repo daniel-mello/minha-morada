@@ -44,7 +44,7 @@ export const Edit = ({
           </div>
         </div>
 
-        <div className="content__item">
+        {/* <div className="content__item">
           <span>Selecione o bloco:</span>
           <div className="select">
             <Select
@@ -52,7 +52,7 @@ export const Edit = ({
               options={selectBlocks}
             />
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className="content__half content__half--p-top">
@@ -64,13 +64,13 @@ export const Edit = ({
           value={editData.numeroApto}
           onChange={e => setEditData({ ...editData, numeroApto: e.target.value })}
         />
-        <Input 
+        {/* <Input 
           name="block"
           label="Bloco"
           className="input--small"
           value={editData.blocoApto}
           onChange={e => setEditData({ ...editData, blocoApto: e.target.value })}
-        />
+        /> */}
         <Input 
           required={true}
           name="apartment"

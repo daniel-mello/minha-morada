@@ -34,13 +34,13 @@ export const Edit = ({
     <form onSubmit={e => editResident(e, residentId)} className="form">
       <div className="content__half">
         <h2 className="content__title">Editar Condômino</h2>
-        <div className="content__item">
+        {/* <div className="content__item">
           <span>Selecione o bloco (se houver):</span>
           <Select 
             name="block"
             options={selectBlocks}
           />
-        </div>
+        </div> */}
 
         <div className="content__item">
           <span>Busque pelo apartamento:</span>
@@ -55,34 +55,33 @@ export const Edit = ({
       <div className="content__half">
         <Input 
           name="name"
+          required={true}
+          value={editData.nome}
           className="input--small"
           label="Nome do Condômino"
-          value={editData.nome}
           onChange={e => setEditData({ ...editData, nome: e.target.value })}
         />
-        {/* <Input 
-          name="cpf"
-          className="input--small"
-          label="CPF"
-          value={editData.cpf}
-          onChange={e => setEditData({ ...editData, cpf: e.target.value })}
-        /> */}
         <Input 
           name="email"
-          className="input--small"
           label="E-mail"
+          required={true}
           value={editData.email}
+          className="input--small"
           onChange={e => setEditData({ ...editData, email: e.target.value })}
         />
         <Input 
           name="phone"
-          className="input--small"
+          required={true}
           label="Telefone"
+          className="input--small"
           value={editData.telefone}
           onChange={e => setEditData({ ...editData, telefone: e.target.value })}
         />
         <Input 
           name="name"
+          type="date"
+          isDate={true}
+          required={true}
           className="input--small"
           label="Data de Nascimento"
           value={editData.dataNascimento}

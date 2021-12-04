@@ -64,6 +64,18 @@ export const Resident = ({ tabActive }) => {
     setSearchResult(results);
   };
 
+  const handleDeleteSearchResident = e => {
+    const results = residents.find(person => person.nome.includes(searchTerm));
+
+    if(results.length === 0) {
+      toast.warning("Condômino não encontrado", {
+        position: toast.POSITION.TOP_CENTER
+      })
+    }
+
+    setSearchResult([results]);
+  };
+
   // HTTP METHODS
   // __________________
   const getApartments = () => {
@@ -164,6 +176,12 @@ export const Resident = ({ tabActive }) => {
       });
     };
 
+    if (id === 1) {
+      return toast.error("O usuário modelo não pode ser deletado. Favor escolher outro usuário.", {
+        position: toast.POSITION.TOP_CENTER
+      });
+    }
+
     ResidentService.deleteResident(id).then(response => {
       toast.success(response.data.mensagem, {
         position: toast.POSITION.TOP_CENTER
@@ -222,9 +240,10 @@ export const Resident = ({ tabActive }) => {
           selectBlocks={selectBlocks}
           getResidents={getResidents}
           searchResult={searchResult}
+          setSearchTerm={setSearchTerm}
           deleteResident={deleteResident}
-          handleSearchResident={handleSearchResident}
           handleSelectApartment={handleSelectApartment}
+          handleDeleteSearchResident={handleDeleteSearchResident}
         />
       }
     </div>

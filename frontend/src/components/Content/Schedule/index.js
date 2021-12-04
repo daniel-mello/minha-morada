@@ -33,10 +33,13 @@ export const Schedule = ({ tabActive }) => {
 
   const getSchedules = () => {
     ScheduleService.getSchedules().then(response => {
+      console.log(response);
       const data = response.data.listaAgendamentosEspacos;
+
       setSchedules(data);
     })
   };
+  console.log({schedules})
 
   const createSchedule = (e, roomId) => {
     e.preventDefault();
@@ -55,7 +58,10 @@ export const Schedule = ({ tabActive }) => {
       }
     }
 
+    console.log({body})
+
     ScheduleService.createSchedule(body).then(response => {
+      console.log({response})
       toast.success("Agendamento criado com sucesso!", {
         position: toast.POSITION.TOP_CENTER
       });

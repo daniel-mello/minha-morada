@@ -3,7 +3,6 @@ import { Header } from "../components/Header";
 import { Menu } from "../components/Menu";
 import { MainBox } from "../components/MainBox";
 import { Modal } from "../components/Modal";
-import { ModalEdit } from "../components/ModalEdit";
 import { Footer } from "../components/Footer";
 
 export const Dashboard = () => {
@@ -18,13 +17,9 @@ export const Dashboard = () => {
     setMenuActive(menu);
   };
 
-  const toggleModal = (ata, edit = false) => {
+  const toggleModal = (ata) => {
     setModalContent(ata);
-    if(edit) {
-      setShowEditModal(!showEditModal);
-    } else {
-      setShowModal(!showModal);
-    }
+    setShowModal(!showModal);
   };
 
   return(
@@ -42,7 +37,6 @@ export const Dashboard = () => {
       />
 
       {showModal && <Modal modalContent={modalContent} toggleModal={toggleModal} />}
-      {showEditModal && <ModalEdit modalContent={modalContent} toggleModal={toggleModal} />}
       <Footer />
     </div>
   )

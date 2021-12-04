@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import moment from "moment";
 
 import { Input } from "../../../Input";
 import { Select } from "../../../Select";
@@ -36,13 +37,13 @@ export const Search = ({
           onChange={e => setSearchTerm(e.target.value)}
         />
 
-        <div className="content__item">
+        {/* <div className="content__item">
           <span>Selecione o bloco (se houver):</span>
           <Select 
             name="block"
             options={selectBlocks}
           />
-        </div>
+        </div> */}
 
         <div className="content__item">
           <span>Selecione o apartamento:</span>
@@ -59,17 +60,20 @@ export const Search = ({
       <div className="content__half">
         {hasSearched ? (
           <>
-            {searchResult.map((person, index) => (
-              <PersonCard
-                cpf={person.cpf}
-                name={person.nome}
-                person="personOne"
-                email={person.email}
-                key={`person-${index}`}
-                phone={person.telefone}
-                birthday={person.dataNascimento}
-              />
-            ))}
+            {searchResult.map((person, index) => {
+              const birthday = moment(person.dataNascimento).format("DD/MM/YYYY");
+              return (
+                <PersonCard
+                  cpf={person.cpf}
+                  name={person.nome}
+                  person="personOne"
+                  email={person.email}
+                  key={`person-${index}`}
+                  phone={person.telefone}
+                  birthday={birthday}
+                />
+              )
+            })}
           </>
         ) : (
           <Card>Apartamento vazio</Card>

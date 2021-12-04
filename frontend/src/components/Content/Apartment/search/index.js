@@ -23,7 +23,7 @@ export const Search = ({ numbersApt, apartment, selectBlocks, handleSelectApartm
           </div>
         </div>
 
-        <div className="content__item">
+        {/* <div className="content__item">
           <span>Selecione o bloco (se houver):</span>
           <div className="select">
             <Select
@@ -31,7 +31,7 @@ export const Search = ({ numbersApt, apartment, selectBlocks, handleSelectApartm
               options={selectBlocks}
             />
           </div>
-        </div>
+        </div> */}
       </div>
 
       {hasApartment && (

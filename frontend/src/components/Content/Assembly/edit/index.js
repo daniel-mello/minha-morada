@@ -45,6 +45,7 @@ export const Edit = ({ assemblies, searchTerm, searchResult, setSearchTerm, edit
                         name="date"
                         type="date"
                         isDate={true}
+                        required={true}
                         value={editData.dataHora}
                         className="input--fit-content"
                         onChange={e => setEditData({ ...editData, dataHora: e.target.value })}
@@ -57,6 +58,7 @@ export const Edit = ({ assemblies, searchTerm, searchResult, setSearchTerm, edit
                         cols="30"
                         id="minute"
                         name="minute"
+                        required={true}
                         value={editData.ata}
                         className="content__textarea edit__textarea"
                         onChange={e => setEditData({ ...editData, ata: e.target.value })}

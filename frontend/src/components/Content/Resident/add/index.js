@@ -9,36 +9,43 @@ export const Add = ({ createData, setCreateData, createResident, numbersApt, apa
         <h2 className="content__title">Cadastrar Condômino</h2>
         <Input 
           name="name"
+          required={true}
+          value={createData.nome}
           className="input--small"
           label="Nome do Condômino"
-          value={createData.nome}
           onChange={e => setCreateData({ ...createData, nome: e.target.value })}
         />
         <Input 
           name="cpf"
-          className="input--small"
           label="CPF"
+          required={true}
+          className="input--small"
           value={createData.cpf}
           onChange={e => setCreateData({ ...createData, cpf: e.target.value })}
         />
         <Input 
           name="email"
-          className="input--small"
+          type="email"
           label="E-mail"
+          required={true}
+          className="input--small"
           value={createData.email}
           onChange={e => setCreateData({ ...createData, email: e.target.value })}
         />
         <Input 
+          type="tel"
           name="phone"
-          className="input--small"
+          required={true}
           label="Telefone"
+          className="input--small"
           value={createData.telefone}
           onChange={e => setCreateData({ ...createData, telefone: e.target.value })}
         />
         <Input 
-          name="name"
+          name="date"
           type="date"
           isDate={true}
+          required={true}
           className="input--small"
           label="Data de Nascimento"
           value={createData.dataNascimento}
@@ -48,13 +55,13 @@ export const Add = ({ createData, setCreateData, createResident, numbersApt, apa
 
       <div className="content__half">
         <div>
-          <div className="content__item">
+          {/* <div className="content__item">
             <span>Selecione o bloco (se houver):</span>
             <Select 
               name="block"
               options={selectBlocks}
             />
-          </div>
+          </div> */}
 
           <div className="content__item">
             <span>Selecione o apartamento:</span>

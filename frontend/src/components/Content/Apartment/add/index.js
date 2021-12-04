@@ -17,13 +17,13 @@ export const Add = ({ createData, setCreateData, createApartment }) => {
             className="input--small"
             onChange={e => setCreateData({ ...createData, numeroApto: e.target.value })}
           />
-          <Input 
+          {/* <Input 
             name="block"
             label="Bloco"
             value={createData.blocoApto}
             className="input--small"
             onChange={e => setCreateData({ ...createData, blocoApto: e.target.value })}
-          />
+          /> */}
           <Input 
             required={true}
             name="apartment"

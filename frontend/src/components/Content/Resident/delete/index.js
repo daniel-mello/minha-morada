@@ -10,12 +10,13 @@ import "../styles.css";
 export const Delete = ({ 
   numbersApt, 
   searchTerm,
-  selectBlocks,
+  // selectBlocks,
   getResidents,
   searchResult,
+  setSearchTerm,
   deleteResident,
-  handleSearchResident,
-  handleSelectApartment
+  handleSelectApartment,
+  handleDeleteSearchResident
 }) => {
   const [residentId, setResidentId] = useState(null);
   const hasSearched = searchResult.length > 0;
@@ -28,6 +29,9 @@ export const Delete = ({
     setResidentId(hasSearched ? searchResult[0].id : null);
   }, [searchResult])
 
+  console.log({hasSearched})
+  console.log({searchResult})
+
   return (
     <>
       <div className="content__half">
@@ -35,19 +39,19 @@ export const Delete = ({
 
         <Input 
           name="name"
+          value={searchTerm}
           className="input--small"
           label="Nome do Condômino"
-          value={searchTerm}
-          onChange={handleSearchResident}
+          onChange={e => setSearchTerm(e.target.value)}
         />
         
-        <div className="content__item">
+        {/* <div className="content__item">
           <span>Selecione o bloco (se houver):</span>
           <Select 
             name="block"
             options={selectBlocks}
           />
-        </div>
+        </div> */}
 
         <div className="content__item">
           <span>Selecione o apartamento:</span>
@@ -57,6 +61,8 @@ export const Delete = ({
             onChange={e => handleSelectApartment(e.target.value)}
           />
         </div>
+
+        <Button className="button--fit-content" onClick={handleDeleteSearchResident}>Pesquisar</Button>
       </div>
 
       <div className="content__half">

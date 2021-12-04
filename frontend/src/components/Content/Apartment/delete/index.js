@@ -24,7 +24,7 @@ export const Delete = ({ numbersApt, apartment, selectBlocks, handleSelectApartm
           </div>
         </div>
 
-        <div className="content__item">
+        {/* <div className="content__item">
           <span>Selecione o bloco:</span>
           <div className="select">
             <Select
@@ -32,7 +32,7 @@ export const Delete = ({ numbersApt, apartment, selectBlocks, handleSelectApartm
               options={selectBlocks}
             />
           </div>
-        </div>
+        </div> */}
         <Button className="button button--red" onClick={() => deleteApartment(apartment.id)}>Excluir Apartamento</Button>
       </div>
 
