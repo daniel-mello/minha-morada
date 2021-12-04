@@ -8,7 +8,6 @@ import { Footer } from "../components/Footer";
 export const Dashboard = () => {
   const [menuActive, setMenuActive] = useState("apartment");
   const [showModal, setShowModal] = useState(false);
-  const [showEditModal, setShowEditModal] = useState(false);
   const [modalContent, setModalContent] = useState("");
   const [tabActive, setTabActive] = useState("add");
 

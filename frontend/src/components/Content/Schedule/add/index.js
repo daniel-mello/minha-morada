@@ -16,7 +16,6 @@ export const Add = ({ rooms, schedules, createSchedule }) => {
         {rooms.map((room, index) => {
           const notAvailable = room && room.agendamentoEspaco.length > 0;
           const agendamento = notAvailable && room.agendamentoEspaco[0];
-          console.log({room})
 
           return (
             <Card key={`room-schedule-${index}`}>

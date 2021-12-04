@@ -18,6 +18,11 @@ export const Schedule = ({ tabActive }) => {
     getSchedules();
   }, []);
 
+  useEffect(() => {
+    getRooms();
+    getSchedules();
+  }, [tabActive]);
+
   // HTTP METHODS
   // __________________
   const getRooms = () => {
@@ -33,13 +38,11 @@ export const Schedule = ({ tabActive }) => {
 
   const getSchedules = () => {
     ScheduleService.getSchedules().then(response => {
-      console.log(response);
       const data = response.data.listaAgendamentosEspacos;
 
       setSchedules(data);
     })
   };
-  console.log({schedules})
 
   const createSchedule = (e, roomId) => {
     e.preventDefault();
@@ -56,18 +59,15 @@ export const Schedule = ({ tabActive }) => {
           id: 1
         }
       }
-    }
-
-    console.log({body})
+    };
 
     ScheduleService.createSchedule(body).then(response => {
-      console.log({response})
       toast.success("Agendamento criado com sucesso!", {
         position: toast.POSITION.TOP_CENTER
       });
       setCreateData("");
       getRooms();
-      return setSchedules([ ...schedules, createData ]);
+      return setSchedules([ ...schedules, body ]);
     }).catch(e => (
       toast.error("Erro: Tente novamente ou entre em contato conosco.", {
         position: toast.POSITION.TOP_CENTER
@@ -76,11 +76,14 @@ export const Schedule = ({ tabActive }) => {
   };
 
   const deleteSchedule = id => {
-    ScheduleService.deleteSchedule(id).then(response => {
+    const schedule = schedules.find(it => it.espaco.id === id);
+
+    ScheduleService.deleteSchedule(schedule.id).then(response => {
       toast.success(response.data.mensagem, {
         position: toast.POSITION.TOP_CENTER
       });
       getRooms();
+      getSchedules();
     }).catch(e => (
       toast.error("Erro: Tente novamente ou entre em contato conosco.", {
         position: toast.POSITION.TOP_CENTER

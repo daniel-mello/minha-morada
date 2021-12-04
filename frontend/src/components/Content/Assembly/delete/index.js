@@ -2,7 +2,6 @@ import { useState } from "react";
 import moment from "moment";
 
 import { Card } from "../../../Card";
-import { Input } from "../../../Input";
 import { Button } from "../../../Button";
 import "../../styles.css";
 

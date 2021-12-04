@@ -36,6 +36,7 @@ export const Resident = ({ tabActive }) => {
     setApartment({});
     getApartments();
     setSearchResult([]);
+    setCreateData({});
   }, [tabActive]);
 
   useEffect(() => {
@@ -67,8 +68,8 @@ export const Resident = ({ tabActive }) => {
   const handleDeleteSearchResident = e => {
     const results = residents.find(person => person.nome.includes(searchTerm));
 
-    if(results.length === 0) {
-      toast.warning("Condômino não encontrado", {
+    if(results === undefined ||(results && results.length === 0)) {
+      return toast.warning("Condômino não encontrado", {
         position: toast.POSITION.TOP_CENTER
       })
     }

@@ -9,7 +9,6 @@ import { Delete } from "./delete";
 import AssemblyService from "../../../services/AssemblyService";
 
 export const Assembly = ({ tabActive, toggleModal }) => {
-  const [assembly, setAssembly] = useState({});
   const [assemblies, setAssemblies] = useState([]);
   const [searchTerm, setSearchTerm] = useState({});
   const [createData, setCreateData] = useState({});
@@ -23,12 +22,6 @@ export const Assembly = ({ tabActive, toggleModal }) => {
   
   // HANDLERS
   // _____________
-  const handleSelectAssembly = id => {
-    const selectAssembly = assemblies.find(it => it.numeroApto === id);
-
-    // getAssembly(selectApt.id);
-  };
-
   const handleSearchAssembly = () => {
     const nameResults = assemblies.filter(assembly => assembly.titulo === searchTerm.titulo);
     const dateResults = assemblies.filter(assembly => assembly.dataHora === searchTerm.data);

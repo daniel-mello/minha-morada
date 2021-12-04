@@ -29,9 +29,6 @@ export const Delete = ({
     setResidentId(hasSearched ? searchResult[0].id : null);
   }, [searchResult])
 
-  console.log({hasSearched})
-  console.log({searchResult})
-
   return (
     <>
       <div className="content__half">

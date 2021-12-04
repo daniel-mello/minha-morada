@@ -8,10 +8,6 @@ import { Delete } from "./delete";
 
 import RoomService from "../../../services/RoomService";
 
-const initialEditState = [
-
-];
-
 export const Room = ({ tabActive }) => {
   const [room, setRoom] = useState({});
   const [rooms, setRooms] = useState([]);
@@ -33,12 +29,6 @@ export const Room = ({ tabActive }) => {
 
 // HANDLERS
 // _____________
-  const handleSelectRoom = id => {
-    const selectRoom = rooms.find(it => it.numeroApto === id);
-
-    // getRoom(selectApt.id);
-  };
-
   const handleSearchRoom = () => {
     const results = rooms.filter(room => room.nomeEspaco.includes(searchTerm));
     if(results.length === 0) {
@@ -144,13 +134,11 @@ export const Room = ({ tabActive }) => {
           editRoom={editRoom}
           editData={editData}
           setEditData={setEditData}
-          handleSelectRoom={handleSelectRoom}
         />}
       {tabActive === "delete" && 
         <Delete 
           rooms={rooms}
           deleteRoom={deleteRoom}
-          handleSelectRoom={handleSelectRoom}
         />}
     </div>
   );

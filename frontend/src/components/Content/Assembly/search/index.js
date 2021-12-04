@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import moment from "moment";
 import { Card } from "../../../Card";
 import { Input } from "../../../Input";

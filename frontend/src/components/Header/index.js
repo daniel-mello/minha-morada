@@ -15,7 +15,7 @@ export const Header = ({ isDashboard }) => {
         </Link>
         {isDashboard ? (
           <div className="header-nav">
-            <h2>Olá, <strong>Daniel</strong></h2>
+            <h2>Olá, <strong>Osmar</strong></h2>
           </div>
         ) : (
           <div className="header__nav">
